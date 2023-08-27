@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   const HomeTab(),
                   Container(),
-                  Container(),
+                  const ContactTab(),
                   const ProfileTab(),
                 ],
               ),
@@ -392,6 +392,98 @@ class HomeTab extends StatelessWidget {
               ),
               SizedBox(height: 90.w),
             ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ContactTab extends StatelessWidget {
+  const ContactTab({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                BaseImages.overlay,
+              ),
+              alignment: Alignment.topRight,
+            ),
+            color: BaseColors.primaryLightOrange,
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: 20.w,
+            vertical: 20.w,
+          ),
+          child: SafeArea(
+            bottom: false,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 11.h),
+                          child: Text(
+                            "Contact Emergency",
+                            style: GilroyFontWhite.regular20(context),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 29.w),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 18.w,
+                    vertical: 11.w,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                    boxShadow: [
+                      const BoxShadow(
+                        offset: Offset(0, 4),
+                        blurRadius: 15,
+                        spreadRadius: 0,
+                        color: Color(0xFFECF3F6),
+                      )
+                    ],
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(BaseSvg.icSearch),
+                          SizedBox(width: 13.w),
+                          Text(
+                            "Search",
+                            style: GilroyFontBlack.regular16(context).copyWith(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SvgPicture.asset(BaseSvg.icMicrophone),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],

@@ -1,3 +1,4 @@
+import 'package:alertus/core/components/buttons/primary_button.dart';
 import 'package:alertus/core/resources/colors.dart';
 import 'package:alertus/core/styles/textstyles/gilroy_font_black.dart';
 import 'package:alertus/core/styles/textstyles/gilroy_font_custom.dart';
@@ -32,158 +33,221 @@ class _SettingScreenState extends State<SettingScreen> {
       body: Container(
         width: double.infinity,
         padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "Settings",
-                style: GilreyFont.bold24(context)
-                    .copyWith(color: BaseColors.primaryLightOrange),
-              ),
-              SizedBox(height: 2.w),
-              Text(
-                "Emergency Button",
-                style: GilroyFontBlack.bold18(context),
-              ),
-              SizedBox(height: 53.h),
-              Row(
+        child: Column(
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Text(
+                    "Settings",
+                    style: GilreyFont.bold24(context)
+                        .copyWith(color: BaseColors.primaryLightOrange),
+                  ),
+                  SizedBox(height: 2.w),
                   Text(
                     "Emergency Button",
                     style: GilroyFontBlack.bold18(context),
                   ),
-                  const Spacer(),
+                  SizedBox(height: 53.h),
+                  Row(
+                    children: [
+                      Text(
+                        "Emergency Button",
+                        style: GilroyFontBlack.bold18(context),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  SizedBox(height: 20.h),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Record Audio",
+                        style: GilroyFontBlack.regular18(context),
+                      ),
+                      Switch(
+                        value: audio,
+                        activeColor: BaseColors.primaryLightOrange,
+                        onChanged: (value) {
+                          setState(() {
+                            audio = !audio;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Camera",
+                        style: GilroyFontBlack.regular18(context),
+                      ),
+                      Switch(
+                        value: camera,
+                        activeColor: BaseColors.primaryLightOrange,
+                        onChanged: (value) {
+                          setState(() {
+                            camera = !camera;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Location",
+                        style: GilroyFontBlack.regular18(context),
+                      ),
+                      Switch(
+                        value: location,
+                        activeColor: BaseColors.primaryLightOrange,
+                        onChanged: (value) {
+                          setState(() {
+                            location = !location;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Emergency Police",
+                        style: GilroyFontBlack.regular18(context),
+                      ),
+                      Switch(
+                        value: police,
+                        activeColor: BaseColors.primaryLightOrange,
+                        onChanged: (value) {
+                          setState(() {
+                            police = !police;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Family Contact",
+                        style: GilroyFontBlack.regular18(context),
+                      ),
+                      Switch(
+                        value: iot,
+                        activeColor: BaseColors.primaryLightOrange,
+                        onChanged: (value) {
+                          setState(() {
+                            iot = !iot;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Anonymous Vibes",
+                        style: GilroyFontBlack.regular18(context),
+                      ),
+                      Switch(
+                        value: anonymous,
+                        activeColor: BaseColors.primaryLightOrange,
+                        onChanged: (value) {
+                          setState(() {
+                            anonymous = !anonymous;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20.h),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Add Gesture",
+                        style: GilroyFontBlack.bold18(context),
+                      ),
+                      const Icon(
+                        Icons.add,
+                        color: BaseColors.primaryLightOrange,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20.h),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Button SOS",
+                        style: GilroyFontBlack.regular18(context),
+                      ),
+                      Text(
+                        "Touch menu 3x",
+                        style: GilroyFontBlack.regular18(context),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20.h),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Primary Contact",
+                        style: GilroyFontBlack.regular18(context),
+                      ),
+                      Text(
+                        "Touch menu 2x",
+                        style: GilroyFontBlack.regular18(context),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20.h),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Fake Call",
+                        style: GilroyFontBlack.regular18(context),
+                      ),
+                      Text(
+                        "Touch menu 1x",
+                        style: GilroyFontBlack.regular18(context),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20.h),
                 ],
               ),
-              SizedBox(height: 20.h),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Record Audio",
-                    style: GilroyFontBlack.regular18(context),
-                  ),
-                  Switch(
-                    value: audio,
-                    activeColor: BaseColors.primaryLightOrange,
-                    onChanged: (value) {
-                      setState(() {
-                        audio = !audio;
-                      });
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Camera",
-                    style: GilroyFontBlack.regular18(context),
-                  ),
-                  Switch(
-                    value: camera,
-                    activeColor: BaseColors.primaryLightOrange,
-                    onChanged: (value) {
-                      setState(() {
-                        camera = !camera;
-                      });
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Location",
-                    style: GilroyFontBlack.regular18(context),
-                  ),
-                  Switch(
-                    value: location,
-                    activeColor: BaseColors.primaryLightOrange,
-                    onChanged: (value) {
-                      setState(() {
-                        location = !location;
-                      });
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Emergency Police",
-                    style: GilroyFontBlack.regular18(context),
-                  ),
-                  Switch(
-                    value: police,
-                    activeColor: BaseColors.primaryLightOrange,
-                    onChanged: (value) {
-                      setState(() {
-                        police = !police;
-                      });
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Family Contact",
-                    style: GilroyFontBlack.regular18(context),
-                  ),
-                  Switch(
-                    value: iot,
-                    activeColor: BaseColors.primaryLightOrange,
-                    onChanged: (value) {
-                      setState(() {
-                        iot = !iot;
-                      });
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Anonymous Vibes",
-                    style: GilroyFontBlack.regular18(context),
-                  ),
-                  Switch(
-                    value: anonymous,
-                    activeColor: BaseColors.primaryLightOrange,
-                    onChanged: (value) {
-                      setState(() {
-                        anonymous = !anonymous;
-                      });
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(height: 20.h),
-              Row(
-                children: [
-                  Text(
-                    "Add Gesture",
-                    style: GilroyFontBlack.bold18(context),
-                  ),
-                  const Spacer(),
-                ],
-              ),
-              SizedBox(height: 20.h),
-            ],
-          ),
+            ),
+            const Spacer(),
+            SafeArea(
+              top: false,
+              child: PrimaryButton(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  text: "Confirm"),
+            ),
+          ],
         ),
       ),
     );
