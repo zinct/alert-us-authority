@@ -24,149 +24,178 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FD),
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: IndexedStack(
-                index: index,
-                children: [
-                  const HomeTab(),
-                  Container(),
-                  const ContactTab(),
-                  const ProfileTab(),
-                ],
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                physics: index == 1
+                    ? NeverScrollableScrollPhysics()
+                    : BouncingScrollPhysics(),
+                child: IndexedStack(
+                  index: index,
+                  children: const [
+                    HomeTab(),
+                    MapsTab(),
+                    ContactTab(),
+                    ProfileTab(),
+                  ],
+                ),
               ),
             ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 40.w,
-              vertical: 17.w,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 22,
-                  offset: const Offset(0, -18),
-                  color: const Color(0xFFA39CB1).withOpacity(.06),
-                )
-              ],
-            ),
-            child: SafeArea(
-              top: false,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  TouchableOpacityWidget(
-                    onTap: () {
-                      setState(() {
-                        index = 0;
-                      });
-                    },
-                    child: Column(
-                      children: [
-                        SvgPicture.asset(
-                          BaseSvg.icHome,
-                          height: 30.w,
-                          color:
-                              index == 0 ? BaseColors.primaryLightOrange : null,
-                        ),
-                        SizedBox(height: 9.w),
-                        Text(
-                          "Home",
-                          style: GilreyFont.medium12(context).copyWith(
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 40.w,
+                vertical: 17.w,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 22,
+                    offset: const Offset(0, -18),
+                    color: const Color(0xFFA39CB1).withOpacity(.06),
+                  )
+                ],
+              ),
+              child: SafeArea(
+                top: false,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    TouchableOpacityWidget(
+                      onTap: () {
+                        setState(() {
+                          index = 0;
+                        });
+                      },
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(
+                            BaseSvg.icHome,
+                            height: 30.w,
                             color: index == 0
                                 ? BaseColors.primaryLightOrange
-                                : const Color(0xFFBABEC1),
+                                : null,
                           ),
-                        )
-                      ],
+                          SizedBox(height: 9.w),
+                          Text(
+                            "Home",
+                            style: GilreyFont.medium12(context).copyWith(
+                              color: index == 0
+                                  ? BaseColors.primaryLightOrange
+                                  : const Color(0xFFBABEC1),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  TouchableOpacityWidget(
-                    onTap: () {
-                      setState(() {
-                        index = 1;
-                      });
-                    },
-                    child: Column(
-                      children: [
-                        SvgPicture.asset(
-                          BaseSvg.icMaps,
-                          height: 20.w,
-                          color:
-                              index == 1 ? BaseColors.primaryLightOrange : null,
-                        ),
-                        SizedBox(height: 11.w),
-                        Text(
-                          "Maps",
-                          style: GilreyFont.medium12(context).copyWith(
+                    TouchableOpacityWidget(
+                      onTap: () {
+                        setState(() {
+                          index = 1;
+                        });
+                      },
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(
+                            BaseSvg.icMaps,
+                            height: 20.w,
                             color: index == 1
                                 ? BaseColors.primaryLightOrange
-                                : const Color(0xFFBABEC1),
+                                : null,
                           ),
-                        )
-                      ],
+                          SizedBox(height: 11.w),
+                          Text(
+                            "Maps",
+                            style: GilreyFont.medium12(context).copyWith(
+                              color: index == 1
+                                  ? BaseColors.primaryLightOrange
+                                  : const Color(0xFFBABEC1),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  TouchableOpacityWidget(
-                    onTap: () {
-                      setState(() {
-                        index = 2;
-                      });
-                    },
-                    child: Column(
-                      children: [
-                        SvgPicture.asset(
-                          BaseSvg.icPhone,
-                          color:
-                              index == 2 ? BaseColors.primaryLightOrange : null,
-                        ),
-                        SizedBox(height: 9.w),
-                        Text(
-                          "Phone",
-                          style: GilreyFont.medium12(context).copyWith(
+                    TouchableOpacityWidget(
+                      onTap: () {
+                        setState(() {
+                          index = 2;
+                        });
+                      },
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(
+                            BaseSvg.icPhone,
                             color: index == 2
                                 ? BaseColors.primaryLightOrange
-                                : const Color(0xFFBABEC1),
+                                : null,
                           ),
-                        )
-                      ],
+                          SizedBox(height: 9.w),
+                          Text(
+                            "Phone",
+                            style: GilreyFont.medium12(context).copyWith(
+                              color: index == 2
+                                  ? BaseColors.primaryLightOrange
+                                  : const Color(0xFFBABEC1),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  TouchableOpacityWidget(
-                    onTap: () {
-                      setState(() {
-                        index = 3;
-                      });
-                    },
-                    child: Column(
-                      children: [
-                        SvgPicture.asset(
-                          BaseSvg.icUser,
-                          color:
-                              index == 3 ? BaseColors.primaryLightOrange : null,
-                        ),
-                        SizedBox(height: 9.w),
-                        Text(
-                          "Profile",
-                          style: GilreyFont.medium12(context).copyWith(
+                    TouchableOpacityWidget(
+                      onTap: () {
+                        setState(() {
+                          index = 3;
+                        });
+                      },
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(
+                            BaseSvg.icUser,
                             color: index == 3
                                 ? BaseColors.primaryLightOrange
-                                : const Color(0xFFBABEC1),
+                                : null,
                           ),
-                        )
-                      ],
+                          SizedBox(height: 9.w),
+                          Text(
+                            "Profile",
+                            style: GilreyFont.medium12(context).copyWith(
+                              color: index == 3
+                                  ? BaseColors.primaryLightOrange
+                                  : const Color(0xFFBABEC1),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MapsTab extends StatelessWidget {
+  const MapsTab({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.amber,
+      height: MediaQuery.of(context).size.height,
+      width: double.infinity,
+      child: Image.asset(
+        BaseImages.googleMaps,
+        fit: BoxFit.fill,
       ),
     );
   }
@@ -484,6 +513,255 @@ class ContactTab extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 30.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Emergency Button",
+                        style: GilroyFontBlack.bold18(context),
+                      ),
+                      SizedBox(height: 5.h),
+                      Text(
+                        "Emergency contact number as needed",
+                        style: GilroyFontBlack.regular14(context),
+                      ),
+                    ],
+                  ),
+                  TouchableOpacityWidget(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(ROUTER.setting);
+                    },
+                    child: Text(
+                      "View All",
+                      style: GilroyFontBlack.bold16(context).copyWith(
+                        color: BaseColors.primaryLightOrange,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 30.h),
+              Card(
+                shape: const RoundedRectangleBorder(),
+                margin: EdgeInsets.zero,
+                shadowColor: const Color(0xFFECF3F6).withOpacity(.06),
+                child: ListTile(
+                  leading: Image.asset(BaseImages.logoPolice),
+                  title: Text(
+                    "Police Office",
+                    style: GilroyFontBlack.regular16(context),
+                  ),
+                  subtitle: Text(
+                    "110",
+                    style: GilroyFontBlack.regular14(context),
+                  ),
+                  trailing: const CircleAvatar(
+                    backgroundColor: BaseColors.primaryLightGreen,
+                    child: Icon(
+                      Icons.phone_in_talk_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              Card(
+                shape: const RoundedRectangleBorder(),
+                margin: EdgeInsets.zero,
+                shadowColor: const Color(0xFFECF3F6).withOpacity(.06),
+                child: ListTile(
+                  leading: Image.asset(BaseImages.logoFirefighter),
+                  title: Text(
+                    "Fire Department",
+                    style: GilroyFontBlack.regular16(context),
+                  ),
+                  subtitle: Text(
+                    "113",
+                    style: GilroyFontBlack.regular14(context),
+                  ),
+                  trailing: const CircleAvatar(
+                    backgroundColor: BaseColors.primaryLightGreen,
+                    child: Icon(
+                      Icons.phone_in_talk_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              Card(
+                shape: const RoundedRectangleBorder(),
+                margin: EdgeInsets.zero,
+                shadowColor: const Color(0xFFECF3F6).withOpacity(.06),
+                child: ListTile(
+                  leading: Image.asset(BaseImages.logoSar),
+                  title: Text(
+                    "SAR / Search and Rescue",
+                    style: GilroyFontBlack.regular16(context),
+                  ),
+                  subtitle: Text(
+                    "115",
+                    style: GilroyFontBlack.regular14(context),
+                  ),
+                  trailing: const CircleAvatar(
+                    backgroundColor: BaseColors.primaryLightGreen,
+                    child: Icon(
+                      Icons.phone_in_talk_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              Card(
+                shape: const RoundedRectangleBorder(),
+                margin: EdgeInsets.zero,
+                shadowColor: const Color(0xFFECF3F6).withOpacity(.06),
+                elevation: 2,
+                child: ListTile(
+                  leading: Image.asset(BaseImages.logoHospital),
+                  title: Text(
+                    "Ambulance",
+                    style: GilroyFontBlack.regular16(context),
+                  ),
+                  subtitle: Text(
+                    "118/119",
+                    style: GilroyFontBlack.regular14(context),
+                  ),
+                  trailing: const CircleAvatar(
+                    backgroundColor: BaseColors.primaryLightGreen,
+                    child: Icon(
+                      Icons.phone_in_talk_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 53.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Family Contact",
+                        style: GilroyFontBlack.bold18(context),
+                      ),
+                    ],
+                  ),
+                  TouchableOpacityWidget(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(ROUTER.addContact);
+                    },
+                    child: Text(
+                      "Add Contact",
+                      style: GilroyFontBlack.bold16(context).copyWith(
+                        color: BaseColors.primaryLightOrange,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10.h),
+              Text(
+                "Primary Contact",
+                style: GilroyFontBlack.regular14(context)
+                    .copyWith(color: const Color(0xFF939393)),
+              ),
+              SizedBox(height: 10.h),
+              Card(
+                shape: const RoundedRectangleBorder(),
+                margin: EdgeInsets.zero,
+                shadowColor: const Color(0xFFECF3F6).withOpacity(.06),
+                elevation: 2,
+                child: ListTile(
+                  leading: Image.asset(BaseImages.doctorMan),
+                  title: Text(
+                    "Papa",
+                    style: GilroyFontBlack.regular16(context),
+                  ),
+                  subtitle: Text(
+                    "081337xxxxx",
+                    style: GilroyFontBlack.regular14(context)
+                        .copyWith(color: Color(0xFF666666)),
+                  ),
+                  trailing: const CircleAvatar(
+                    backgroundColor: BaseColors.primaryLightGreen,
+                    child: Icon(
+                      Icons.phone_in_talk_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20.h),
+              Text(
+                "Call your family",
+                style: GilroyFontBlack.regular14(context)
+                    .copyWith(color: const Color(0xFF939393)),
+              ),
+              SizedBox(height: 10.h),
+              Card(
+                shape: const RoundedRectangleBorder(),
+                margin: EdgeInsets.zero,
+                shadowColor: const Color(0xFFECF3F6).withOpacity(.06),
+                elevation: 2,
+                child: ListTile(
+                  leading: Image.asset(BaseImages.doctorMan),
+                  title: Text(
+                    "Uncle",
+                    style: GilroyFontBlack.regular16(context),
+                  ),
+                  subtitle: Text(
+                    "081337xxxxx",
+                    style: GilroyFontBlack.regular14(context)
+                        .copyWith(color: Color(0xFF666666)),
+                  ),
+                  trailing: const CircleAvatar(
+                    backgroundColor: BaseColors.primaryLightGreen,
+                    child: Icon(
+                      Icons.phone_in_talk_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              Card(
+                shape: const RoundedRectangleBorder(),
+                margin: EdgeInsets.zero,
+                shadowColor: const Color(0xFFECF3F6).withOpacity(.06),
+                elevation: 2,
+                child: ListTile(
+                  leading: Image.asset(BaseImages.doctorGirl),
+                  title: Text(
+                    "Mama",
+                    style: GilroyFontBlack.regular16(context),
+                  ),
+                  subtitle: Text(
+                    "081337xxxxx",
+                    style: GilroyFontBlack.regular14(context)
+                        .copyWith(color: Color(0xFF666666)),
+                  ),
+                  trailing: const CircleAvatar(
+                    backgroundColor: BaseColors.primaryLightGreen,
+                    child: Icon(
+                      Icons.phone_in_talk_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 60.h),
+            ],
           ),
         ),
       ],

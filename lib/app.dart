@@ -1,6 +1,7 @@
 import 'package:alertus/core/constants/font.dart';
 import 'package:alertus/core/constants/router.dart';
 import 'package:alertus/core/utils/scroll_behaviour_utils.dart';
+import 'package:alertus/screens/add_contact_screen.dart';
 import 'package:alertus/screens/home_screen.dart';
 import 'package:alertus/screens/login_screen.dart';
 import 'package:alertus/screens/register_screen.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             fontFamily: BaseFonts.gilroy,
           ),
+          debugShowCheckedModeBanner: false,
           builder: (context, child) {
             return ScrollConfiguration(
               behavior: const ScrollBehaviourUtils(),
@@ -39,6 +41,7 @@ class MyApp extends StatelessWidget {
             ROUTER.register: (context) => const RegisterScreen(),
             ROUTER.home: (context) => const HomeScreen(),
             ROUTER.setting: (context) => const SettingScreen(),
+            ROUTER.addContact: (context) => const AddContactScreen(),
           },
         );
       },

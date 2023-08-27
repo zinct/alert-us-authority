@@ -7,7 +7,7 @@ class BaseImages {
   static const icBell = 'assets/images/img_ic_bell.png';
   static const icLanguange = 'assets/images/img_ic_languange.png';
   static const location = 'assets/images/img_location.png';
-  static const logoFirefighter = 'assets/images/img_firefighter.png';
+  static const logoFirefighter = 'assets/images/img_logo_firefighter.png';
   static const logoHospital = 'assets/images/img_logo_hospital.png';
   static const logoPolice = 'assets/images/img_logo_police.png';
   static const logoSar = 'assets/images/img_logo_sar.png';
@@ -17,6 +17,8 @@ class BaseImages {
   static const overlay = 'assets/images/img_overlay.png';
   static const sos = 'assets/images/img_sos.png';
   static const calldring = 'assets/images/img_calldring.png';
+  static const placeholder = 'assets/images/img_placeholder.png';
+  static const googleMaps = 'assets/images/img_google_maps.png';
 }
 
 class BaseImage64 {}

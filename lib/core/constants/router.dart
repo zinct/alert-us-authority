@@ -7,4 +7,5 @@ class ROUTER {
   static const home_police = 'apps.screen.home_police';
   static const setting = 'apps.screen.setting';
   static const maps = 'apps.screen.maps';
+  static const addContact = 'apps.screen.add_contact';
 }
