@@ -93,7 +93,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 80.w),
-                  PrimaryButton(onTap: () {}, text: "Log in"),
+                  PrimaryButton(onTap: () {}, text: "Register"),
                   SizedBox(height: 20.w),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

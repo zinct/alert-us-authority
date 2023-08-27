@@ -63,7 +63,11 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 20.w),
-                      PrimaryButton(onTap: () {}, text: "Log in"),
+                      PrimaryButton(
+                          onTap: () {
+                            Navigator.of(context).pushNamed(ROUTER.home);
+                          },
+                          text: "Log in"),
                       SizedBox(height: 20.w),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

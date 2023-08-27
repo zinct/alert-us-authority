@@ -13,6 +13,10 @@ class BaseImages {
   static const logoSar = 'assets/images/img_logo_sar.png';
   static const policeCar = 'assets/images/img_police_car.png';
   static const police = 'assets/images/img_police.png';
+  static const icNotification = 'assets/images/img_ic_notification.png';
+  static const overlay = 'assets/images/img_overlay.png';
+  static const sos = 'assets/images/img_sos.png';
+  static const calldring = 'assets/images/img_calldring.png';
 }
 
 class BaseImage64 {}
