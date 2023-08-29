@@ -19,6 +19,7 @@ class BaseImages {
   static const calldring = 'assets/images/img_calldring.png';
   static const placeholder = 'assets/images/img_placeholder.png';
   static const googleMaps = 'assets/images/img_google_maps.png';
+  static const googleMaps2 = 'assets/images/img_google_maps2.png';
 }
 
 class BaseImage64 {}

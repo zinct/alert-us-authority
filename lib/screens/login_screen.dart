@@ -65,7 +65,14 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: 20.w),
                       PrimaryButton(
                           onTap: () {
-                            Navigator.of(context).pushNamed(ROUTER.home);
+                            if (Navigator.of(context).canPop()) {
+                              Navigator.of(context).pop();
+                            }
+                            if (Navigator.of(context).canPop()) {
+                              Navigator.of(context).pop();
+                            }
+                            Navigator.of(context)
+                                .pushReplacementNamed(ROUTER.home);
                           },
                           text: "Log in"),
                       SizedBox(height: 20.w),

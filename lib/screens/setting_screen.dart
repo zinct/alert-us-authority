@@ -1,7 +1,9 @@
 import 'package:alertus/core/components/buttons/primary_button.dart';
+import 'package:alertus/core/components/textfields/primary_text_field.dart';
 import 'package:alertus/core/resources/colors.dart';
 import 'package:alertus/core/styles/textstyles/gilroy_font_black.dart';
 import 'package:alertus/core/styles/textstyles/gilroy_font_custom.dart';
+import 'package:alertus/core/widgets/touchable_opacity_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,7 +19,7 @@ class _SettingScreenState extends State<SettingScreen> {
   bool camera = false;
   bool location = false;
   bool police = false;
-  bool family = false;
+  bool family = true;
   bool iot = false;
   bool anonymous = false;
   List<Map<String, String>> gestures = [];
@@ -145,6 +147,26 @@ class _SettingScreenState extends State<SettingScreen> {
                         style: GilroyFontBlack.regular18(context),
                       ),
                       Switch(
+                        value: family,
+                        activeColor: BaseColors.primaryLightOrange,
+                        onChanged: (value) {
+                          setState(() {
+                            family = !family;
+                            anonymous = !anonymous;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "IOT Product",
+                        style: GilroyFontBlack.regular18(context),
+                      ),
+                      Switch(
                         value: iot,
                         activeColor: BaseColors.primaryLightOrange,
                         onChanged: (value) {
@@ -168,6 +190,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         activeColor: BaseColors.primaryLightOrange,
                         onChanged: (value) {
                           setState(() {
+                            family = !family;
                             anonymous = !anonymous;
                           });
                         },
@@ -183,9 +206,96 @@ class _SettingScreenState extends State<SettingScreen> {
                         "Add Gesture",
                         style: GilroyFontBlack.bold18(context),
                       ),
-                      const Icon(
-                        Icons.add,
-                        color: BaseColors.primaryLightOrange,
+                      TouchableOpacityWidget(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            backgroundColor: Colors.transparent,
+                            isScrollControlled: true,
+                            builder: (context) {
+                              return Container(
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(25),
+                                    topRight: Radius.circular(25),
+                                  ),
+                                ),
+                                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                                child: Wrap(
+                                  spacing: 20,
+                                  runSpacing: 20,
+                                  children: [
+                                    SizedBox(height: 20.h),
+                                    Expanded(
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Add Gesture",
+                                                  style: GilroyFontBlack.bold18(
+                                                      context),
+                                                ),
+                                                SizedBox(height: 10.h),
+                                                const PrimaryTextField(
+                                                  hintText: "Add Gesture",
+                                                  readOnly: true,
+                                                  suffix: Icon(Icons
+                                                      .keyboard_arrow_down),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(width: 20.w),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Menu Touch",
+                                                  style: GilroyFontBlack.bold18(
+                                                      context),
+                                                ),
+                                                SizedBox(height: 10.h),
+                                                const PrimaryTextField(
+                                                  hintText: "Menu Touch",
+                                                  readOnly: true,
+                                                  suffix: Icon(Icons
+                                                      .keyboard_arrow_down),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: 20.h),
+                                    SafeArea(
+                                      top: false,
+                                      child: Column(
+                                        children: [
+                                          PrimaryButton(
+                                              onTap: () {},
+                                              text: "Add Gesture"),
+                                          SizedBox(height: 20.h),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: const Icon(
+                          Icons.add,
+                          color: BaseColors.primaryLightOrange,
+                        ),
                       ),
                     ],
                   ),
@@ -241,11 +351,17 @@ class _SettingScreenState extends State<SettingScreen> {
             const Spacer(),
             SafeArea(
               top: false,
-              child: PrimaryButton(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
-                  text: "Confirm"),
+              child: Column(
+                children: [
+                  PrimaryButton(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    text: "Confirm",
+                  ),
+                  SizedBox(height: 20.h),
+                ],
+              ),
             ),
           ],
         ),
