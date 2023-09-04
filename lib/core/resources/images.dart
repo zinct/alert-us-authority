@@ -20,6 +20,7 @@ class BaseImages {
   static const placeholder = 'assets/images/img_placeholder.png';
   static const googleMaps = 'assets/images/img_google_maps.png';
   static const googleMaps2 = 'assets/images/img_google_maps2.png';
+  static const mapsFire = 'assets/images/img_maps_fire.png';
 }
 
 class BaseImage64 {}

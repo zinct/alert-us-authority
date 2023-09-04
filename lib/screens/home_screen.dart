@@ -10,6 +10,7 @@ import 'package:alertus/core/widgets/touchable_opacity_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -192,10 +193,21 @@ class _MapsTabState extends State<MapsTab> {
 
   bool isLocation = true;
   bool police = false;
+  bool fire = false;
 
   @override
   void initState() {
     super.initState();
+  }
+
+  String getImage() {
+    if (police) {
+      return BaseImages.googleMaps2;
+    } else if (fire) {
+      return BaseImages.mapsFire;
+    } else {
+      return BaseImages.googleMaps;
+    }
   }
 
   @override
@@ -210,7 +222,7 @@ class _MapsTabState extends State<MapsTab> {
             color: Colors.amber,
             width: double.infinity,
             child: Image.asset(
-              police ? BaseImages.googleMaps2 : BaseImages.googleMaps,
+              getImage(),
               fit: BoxFit.cover,
             ),
           ),
@@ -231,6 +243,9 @@ class _MapsTabState extends State<MapsTab> {
                                 onTap: () {
                                   setState(() {
                                     police = !police;
+                                    if (fire) {
+                                      fire = false;
+                                    }
                                   });
                                 },
                                 child: Container(
@@ -263,21 +278,38 @@ class _MapsTabState extends State<MapsTab> {
                           ),
                           Row(
                             children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(7),
-                                  border: Border.all(
-                                    color: BaseColors.primaryLightOrange,
+                              TouchableOpacityWidget(
+                                onTap: () {
+                                  setState(() {
+                                    fire = !fire;
+                                    if (police) {
+                                      police = false;
+                                    }
+                                  });
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: fire
+                                        ? BaseColors.fontPrimaryLightOrange
+                                        : Colors.white,
+                                    borderRadius: BorderRadius.circular(7),
+                                    border: Border.all(
+                                      color: BaseColors.primaryLightOrange,
+                                    ),
                                   ),
-                                ),
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 15.w,
-                                  vertical: 13.h,
-                                ),
-                                child: Text(
-                                  "Fire Department",
-                                  style: GilroyFontBlack.bold12(context),
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 15.w,
+                                    vertical: 13.h,
+                                  ),
+                                  child: Text(
+                                    "Fire Department",
+                                    style: GilroyFontBlack.bold12(context)
+                                        .copyWith(
+                                      color: fire
+                                          ? Colors.white
+                                          : BaseColors.fontPrimaryBlack,
+                                    ),
+                                  ),
                                 ),
                               ),
                               SizedBox(width: 20.w),
@@ -767,9 +799,7 @@ class ContactTab extends StatelessWidget {
                       ],
                     ),
                     TouchableOpacityWidget(
-                      onTap: () {
-                        Navigator.of(context).pushNamed(ROUTER.setting);
-                      },
+                      onTap: () {},
                       child: Text(
                         "View All",
                         style: GilroyFontBlack.bold16(context).copyWith(
