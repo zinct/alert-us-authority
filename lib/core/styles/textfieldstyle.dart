@@ -34,6 +34,7 @@ EliteTextFieldTheme defaultEliteTextFieldTheme({
   required BuildContext context,
   BorderRadius? radius,
   EdgeInsets? contentPadding,
+  Color? borderColor,
 }) {
   return EliteTextFieldTheme(
     contentPadding: contentPadding ??
@@ -43,8 +44,8 @@ EliteTextFieldTheme defaultEliteTextFieldTheme({
           bottom: 20.w,
           right: 15.w,
         ),
-    hintStyle:
-        GilreyFont.regular14(context, color: BaseColors.borderPrimaryGrey),
+    hintStyle: GilreyFont.regular14(context,
+        color: borderColor ?? BaseColors.borderPrimaryGrey),
     textStyle: GilroyFontBlack.regular14(context),
     border: OutlineInputBorder(
       borderRadius: radius ??
@@ -52,7 +53,7 @@ EliteTextFieldTheme defaultEliteTextFieldTheme({
             Radius.circular(8.w),
           ),
       borderSide: BorderSide(
-        color: BaseColors.borderPrimaryGrey,
+        color: borderColor ?? BaseColors.borderPrimaryGrey,
         width: 1.w,
       ),
     ),
@@ -62,7 +63,7 @@ EliteTextFieldTheme defaultEliteTextFieldTheme({
             Radius.circular(8.w),
           ),
       borderSide: BorderSide(
-        color: BaseColors.borderPrimaryGrey,
+        color: borderColor ?? BaseColors.borderPrimaryGrey,
         width: 1.w,
       ),
     ),
@@ -82,7 +83,7 @@ EliteTextFieldTheme defaultEliteTextFieldTheme({
             Radius.circular(8.w),
           ),
       borderSide: BorderSide(
-        color: BaseColors.borderPrimaryGrey,
+        color: borderColor ?? BaseColors.borderPrimaryGrey,
         width: 1.w,
       ),
     ),
@@ -92,7 +93,7 @@ EliteTextFieldTheme defaultEliteTextFieldTheme({
             Radius.circular(8.w),
           ),
       borderSide: BorderSide(
-        color: BaseColors.borderPrimaryGrey,
+        color: borderColor ?? BaseColors.borderPrimaryGrey,
         width: 1.w,
       ),
     ),
@@ -102,7 +103,7 @@ EliteTextFieldTheme defaultEliteTextFieldTheme({
             Radius.circular(8.w),
           ),
       borderSide: BorderSide(
-        color: BaseColors.borderPrimaryGrey,
+        color: borderColor ?? BaseColors.borderPrimaryGrey,
         width: 1.w,
       ),
     ),
@@ -113,6 +114,7 @@ EliteTextFieldTheme primaryOutlinedTextFieldTheme({
   required BuildContext context,
   BorderRadius? radius,
   EdgeInsets? contentPadding,
+  Color? borderColor,
 }) {
   return EliteTextFieldTheme(
     contentPadding: contentPadding ??
@@ -122,8 +124,8 @@ EliteTextFieldTheme primaryOutlinedTextFieldTheme({
           bottom: 15.w,
           right: 15.w,
         ),
-    hintStyle:
-        GilreyFont.regular14(context, color: BaseColors.borderPrimaryGrey),
+    hintStyle: GilreyFont.regular14(context,
+        color: borderColor ?? BaseColors.borderPrimaryGrey),
     textStyle: GilroyFontBlack.regular14(context),
     border: UnderlineInputBorder(
       borderRadius: radius ??
@@ -131,7 +133,7 @@ EliteTextFieldTheme primaryOutlinedTextFieldTheme({
             Radius.circular(8.w),
           ),
       borderSide: BorderSide(
-        color: BaseColors.borderPrimaryGrey,
+        color: borderColor ?? BaseColors.borderPrimaryGrey,
         width: 1.w,
       ),
     ),
@@ -141,7 +143,7 @@ EliteTextFieldTheme primaryOutlinedTextFieldTheme({
             Radius.circular(8.w),
           ),
       borderSide: BorderSide(
-        color: BaseColors.borderPrimaryGrey,
+        color: borderColor ?? BaseColors.borderPrimaryGrey,
         width: 1.w,
       ),
     ),
@@ -161,7 +163,7 @@ EliteTextFieldTheme primaryOutlinedTextFieldTheme({
             Radius.circular(8.w),
           ),
       borderSide: BorderSide(
-        color: BaseColors.borderPrimaryGrey,
+        color: borderColor ?? BaseColors.borderPrimaryGrey,
         width: 1.w,
       ),
     ),
@@ -171,7 +173,7 @@ EliteTextFieldTheme primaryOutlinedTextFieldTheme({
             Radius.circular(8.w),
           ),
       borderSide: BorderSide(
-        color: BaseColors.borderPrimaryGrey,
+        color: borderColor ?? BaseColors.borderPrimaryGrey,
         width: 1.w,
       ),
     ),
@@ -181,7 +183,7 @@ EliteTextFieldTheme primaryOutlinedTextFieldTheme({
             Radius.circular(8.w),
           ),
       borderSide: BorderSide(
-        color: BaseColors.borderPrimaryGrey,
+        color: borderColor ?? BaseColors.borderPrimaryGrey,
         width: 1.w,
       ),
     ),
