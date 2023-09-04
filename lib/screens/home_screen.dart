@@ -1,8 +1,10 @@
 import 'package:alertus/core/components/buttons/primary_button.dart';
+import 'package:alertus/core/components/textfields/primary_text_field.dart';
 import 'package:alertus/core/constants/router.dart';
 import 'package:alertus/core/resources/colors.dart';
 import 'package:alertus/core/resources/images.dart';
 import 'package:alertus/core/resources/svg.dart';
+import 'package:alertus/core/styles/textfieldstyle.dart';
 import 'package:alertus/core/styles/textstyles/gilroy_font_black.dart';
 import 'package:alertus/core/styles/textstyles/gilroy_font_custom.dart';
 import 'package:alertus/core/styles/textstyles/gilroy_font_white.dart';
@@ -657,14 +659,84 @@ class HomeTab extends StatelessWidget {
                               "Fake Call Emergency",
                               style: GilroyFontBlack.bold18(context),
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  "Sound : Police Coming",
-                                  style: GilroyFontBlack.regular12(context),
-                                ),
-                                const Icon(Icons.keyboard_arrow_down),
-                              ],
+                            TouchableOpacityWidget(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  backgroundColor: Colors.transparent,
+                                  isScrollControlled: true,
+                                  builder: (context) {
+                                    return Container(
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(25),
+                                          topRight: Radius.circular(25),
+                                        ),
+                                      ),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 20.w, vertical: 40.h),
+                                      child: Wrap(
+                                        spacing: 20,
+                                        runSpacing: 20,
+                                        children: [
+                                          Text(
+                                            "Fake Call Emergency",
+                                            style:
+                                                GilroyFontBlack.bold18(context),
+                                          ),
+                                          SizedBox(height: 20.h),
+                                          PrimaryTextField(
+                                            theme: defaultEliteTextFieldTheme(
+                                              context: context,
+                                              borderColor: BaseColors
+                                                  .fontPrimaryLightOrange,
+                                            ),
+                                            readOnly: true,
+                                            hintText: "Police Coming",
+                                            suffix: SvgPicture.asset(
+                                              BaseSvg.icRadio,
+                                            ),
+                                          ),
+                                          PrimaryTextField(
+                                            readOnly: true,
+                                            hintText: "Father Calling",
+                                            suffix: SvgPicture.asset(
+                                              BaseSvg.icRadio,
+                                            ),
+                                          ),
+                                          Text(
+                                            "Add Another Sound",
+                                            style: GilroyFontBlack.regular14(
+                                                context),
+                                          ),
+                                          SizedBox(height: 10.h),
+                                          SafeArea(
+                                            top: false,
+                                            child: Column(
+                                              children: [
+                                                PrimaryButton(
+                                                    onTap: () {},
+                                                    text: "Change Sound"),
+                                                SizedBox(height: 20.h),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "Sound : Police Coming",
+                                    style: GilroyFontBlack.regular12(context),
+                                  ),
+                                  const Icon(Icons.keyboard_arrow_down),
+                                ],
+                              ),
                             ),
                           ],
                         ),
