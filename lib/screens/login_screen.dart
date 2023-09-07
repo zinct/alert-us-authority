@@ -3,9 +3,7 @@ import 'package:alertus/core/components/textfields/primary_text_field.dart';
 import 'package:alertus/core/constants/router.dart';
 import 'package:alertus/core/resources/colors.dart';
 import 'package:alertus/core/resources/images.dart';
-import 'package:alertus/core/styles/textstyles/gilroy_font_black.dart';
 import 'package:alertus/core/styles/textstyles/gilroy_font_custom.dart';
-import 'package:alertus/core/styles/textstyles/gilroy_font_white.dart';
 import 'package:alertus/core/widgets/touchable_opacity_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +13,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isPolice = ModalRoute.of(context)!.settings.arguments as bool?;
+
     return Scaffold(
       backgroundColor: BaseColors.primaryLightOrange,
       body: SafeArea(
@@ -71,8 +71,14 @@ class LoginScreen extends StatelessWidget {
                             if (Navigator.of(context).canPop()) {
                               Navigator.of(context).pop();
                             }
-                            Navigator.of(context)
-                                .pushReplacementNamed(ROUTER.home);
+
+                            if (isPolice == null) {
+                              Navigator.of(context)
+                                  .pushReplacementNamed(ROUTER.home);
+                            } else {
+                              Navigator.of(context)
+                                  .pushReplacementNamed(ROUTER.home_police);
+                            }
                           },
                           text: "Log in"),
                       SizedBox(height: 20.w),
@@ -102,8 +108,13 @@ class LoginScreen extends StatelessWidget {
                             SizedBox(width: 5.w),
                             TouchableOpacityWidget(
                               onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed(ROUTER.register);
+                                if (isPolice == null) {
+                                  Navigator.of(context)
+                                      .pushNamed(ROUTER.home_police);
+                                } else {
+                                  Navigator.of(context)
+                                      .pushNamed(ROUTER.register);
+                                }
                               },
                               child: Text(
                                 "Create Account.",

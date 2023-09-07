@@ -83,7 +83,10 @@ class RoleScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 10.w),
                       TouchableOpacityWidget(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(ROUTER.login, arguments: true);
+                        },
                         child: Container(
                           padding: EdgeInsets.symmetric(
                             vertical: 19.w,

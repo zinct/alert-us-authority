@@ -4,6 +4,7 @@ import 'package:alertus/core/resources/colors.dart';
 import 'package:alertus/core/resources/images.dart';
 import 'package:alertus/core/styles/textstyles/gilroy_font_black.dart';
 import 'package:alertus/core/styles/textstyles/gilroy_font_custom.dart';
+import 'package:alertus/screens/success_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -124,7 +125,14 @@ class AddContactScreen extends StatelessWidget {
               SafeArea(
                 top: false,
                 child: PrimaryButton(
-                    onTap: () {
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) {
+                          return SuccessAlert(
+                            message: "contact has been added",
+                          );
+                        },
+                      ));
                       Navigator.of(context).pop();
                     },
                     text: "Confirm"),

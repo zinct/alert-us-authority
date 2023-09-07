@@ -5,7 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
 class SuccessAlert extends StatelessWidget {
-  const SuccessAlert({super.key});
+  const SuccessAlert({super.key, required this.message});
+
+  final String message;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class SuccessAlert extends StatelessWidget {
               style: GilroyFontWhite.bold30(context).copyWith(fontSize: 36.sp),
             ),
             Text(
-              "Setting Emergency Button",
+              message,
               style: GilroyFontWhite.medium24(context),
             ),
           ],

@@ -8,4 +8,5 @@ class ROUTER {
   static const setting = 'apps.screen.setting';
   static const maps = 'apps.screen.maps';
   static const addContact = 'apps.screen.add_contact';
+  static const tracker = 'apps.screen.tracker';
 }

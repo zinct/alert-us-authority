@@ -2,12 +2,14 @@ import 'package:alertus/core/constants/font.dart';
 import 'package:alertus/core/constants/router.dart';
 import 'package:alertus/core/utils/scroll_behaviour_utils.dart';
 import 'package:alertus/screens/add_contact_screen.dart';
+import 'package:alertus/screens/home_police_screen.dart';
 import 'package:alertus/screens/home_screen.dart';
 import 'package:alertus/screens/login_screen.dart';
 import 'package:alertus/screens/register_screen.dart';
 import 'package:alertus/screens/role_screen.dart';
 import 'package:alertus/screens/setting_screen.dart';
 import 'package:alertus/screens/splash_screen.dart';
+import 'package:alertus/screens/track_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -40,8 +42,10 @@ class MyApp extends StatelessWidget {
             ROUTER.login: (context) => const LoginScreen(),
             ROUTER.register: (context) => const RegisterScreen(),
             ROUTER.home: (context) => const HomeScreen(),
+            ROUTER.home_police: (context) => const HomePoliceScreen(),
             ROUTER.setting: (context) => const SettingScreen(),
             ROUTER.addContact: (context) => const AddContactScreen(),
+            ROUTER.tracker: (context) => const TrackScreen(),
           },
         );
       },

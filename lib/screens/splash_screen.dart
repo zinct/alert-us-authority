@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 2));
 
     if (context.mounted) {
-      Navigator.of(context).pushNamed(ROUTER.role);
+      Navigator.of(context).pushReplacementNamed(ROUTER.role);
     }
   }
 

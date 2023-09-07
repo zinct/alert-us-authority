@@ -375,7 +375,9 @@ class _SettingScreenState extends State<SettingScreen> {
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) {
-                          return SuccessAlert();
+                          return SuccessAlert(
+                            message: "Setting Emergency Button",
+                          );
                         },
                       ));
                       // Navigator.of(context).pop();
