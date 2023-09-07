@@ -95,46 +95,51 @@ class TrackScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 24.h),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 20.w,
-                      vertical: 20.w,
-                    ),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            offset: const Offset(0, 4),
-                            blurRadius: 15,
-                            spreadRadius: 0,
-                            color: const Color(0xFFECF3F6).withOpacity(.60),
-                          )
-                        ]),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          BaseImages.dummyPeople,
-                          height: 55.w,
-                        ),
-                        SizedBox(width: 30.w),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Show Track Location",
-                                style: GilroyFontBlack.bold18(context),
-                              ),
-                              SizedBox(height: 10.h),
-                              Text(
-                                "Perumahan Permata Buahbatu Bojongsoang Bandung, Jawa barat",
-                                style: GilroyFontBlack.regular12(context),
-                              ),
-                            ],
+                  TouchableOpacityWidget(
+                    onTap: () {
+                      Navigator.of(context).pop(true);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                        vertical: 20.w,
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              offset: const Offset(0, 4),
+                              blurRadius: 15,
+                              spreadRadius: 0,
+                              color: const Color(0xFFECF3F6).withOpacity(.60),
+                            )
+                          ]),
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            BaseImages.dummyPeople,
+                            height: 55.w,
                           ),
-                        ),
-                      ],
+                          SizedBox(width: 30.w),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Show Track Location",
+                                  style: GilroyFontBlack.bold18(context),
+                                ),
+                                SizedBox(height: 10.h),
+                                Text(
+                                  "Perumahan Permata Buahbatu Bojongsoang Bandung, Jawa barat",
+                                  style: GilroyFontBlack.regular12(context),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(height: 57.h),

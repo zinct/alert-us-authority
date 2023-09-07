@@ -4,6 +4,7 @@ import 'package:alertus/core/styles/textstyles/gilroy_font_white.dart';
 import 'package:alertus/core/widgets/touchable_opacity_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
 class SOS extends StatefulWidget {
   const SOS({super.key, required this.onTap});
@@ -16,6 +17,7 @@ class SOS extends StatefulWidget {
 
 class _SOSState extends State<SOS> {
   bool isEnd = false;
+  bool isEnding = false;
 
   @override
   void initState() {
@@ -29,6 +31,10 @@ class _SOSState extends State<SOS> {
     await Future.delayed(Duration(milliseconds: 600));
     setState(() {
       isEnd = true;
+    });
+    await Future.delayed(Duration(milliseconds: 600));
+    setState(() {
+      isEnding = true;
     });
   }
 
@@ -64,31 +70,38 @@ class _SOSState extends State<SOS> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(height: 100.h),
-                      !isEnd
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(BaseImages.policeCar),
-                                SizedBox(width: 20.w),
-                                Text(
-                                  "Police on the way...",
-                                  style: GilroyFontWhite.medium20(context),
-                                ),
-                              ],
+                      isEnding ? Container() : SizedBox(height: 100.h),
+                      isEnding
+                          ? Lottie.asset(
+                              'assets/lotties/success.json',
+                              height: 200.h,
                             )
-                          : Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Police on the way...",
-                                  style: GilroyFontWhite.medium20(context),
+                          : !isEnd
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(BaseImages.policeCar),
+                                    SizedBox(width: 20.w),
+                                    Text(
+                                      "Police on the way...",
+                                      style: GilroyFontWhite.medium20(context),
+                                    ),
+                                  ],
+                                )
+                              : Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "Police on the way...",
+                                      style: GilroyFontWhite.medium20(context),
+                                    ),
+                                    SizedBox(width: 20.w),
+                                    Image.asset(BaseImages.policeCar),
+                                  ],
                                 ),
-                                SizedBox(width: 20.w),
-                                Image.asset(BaseImages.policeCar),
-                              ],
-                            ),
-                      SizedBox(height: 70.h),
+                      isEnding
+                          ? SizedBox(height: 20.h)
+                          : SizedBox(height: 70.h),
                       Text(
                         "Ensure Your Safety Before We Arrive",
                         style: GilroyFontWhite.bold16(context),

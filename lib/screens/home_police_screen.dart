@@ -191,24 +191,6 @@ class _HomePoliceScreenState extends State<HomePoliceScreen> {
               ],
             ),
           ),
-          isFakeCall
-              ? FakeCall(
-                  onTap: () {
-                    setState(() {
-                      isFakeCall = false;
-                    });
-                  },
-                )
-              : Container(),
-          isSOS
-              ? SOS(
-                  onTap: () {
-                    setState(() {
-                      isSOS = false;
-                    });
-                  },
-                )
-              : Container(),
         ],
       ),
     );
@@ -240,9 +222,17 @@ class _MapsTabState extends State<MapsTab> {
 
   String getImage() {
     if (isDangerious) {
-      return BaseImages.mapsPoliceDanger;
+      if (isTracked) {
+        return BaseImages.mapsPoliceArrowDanger;
+      } else {
+        return BaseImages.mapsPoliceDanger;
+      }
     } else {
-      return BaseImages.mapsPoliceOriginal;
+      if (isTracked) {
+        return BaseImages.mapsPoliceArrow;
+      } else {
+        return BaseImages.mapsPoliceOriginal;
+      }
     }
   }
 
@@ -270,8 +260,14 @@ class _MapsTabState extends State<MapsTab> {
             color: Colors.amber,
             width: double.infinity,
             child: TouchableOpacityWidget(
-              onTap: () {
-                Navigator.of(context).pushNamed(ROUTER.tracker);
+              onTap: () async {
+                final value = await Navigator.of(context)
+                    .pushNamed(ROUTER.tracker) as bool?;
+                if (value == true) {
+                  setState(() {
+                    isTracked = value!;
+                  });
+                }
               },
               child: Image.asset(
                 getImage(),

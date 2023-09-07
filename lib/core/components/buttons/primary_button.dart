@@ -60,11 +60,29 @@ class PrimaryButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: borderRadius ?? BorderRadius.circular(8),
           border: border,
+          gradient: isDisabled
+              ? null
+              : LinearGradient(
+                  // stops: [0.6, 0.9, 1],
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [
+                    Color(0xFFFFB200),
+                    Color(0xFFFFCC61),
+                    Color(0xFFFFCC61),
+                  ],
+                ),
           color: isDisabled
               ? backgroundColor?.withOpacity(.3) ??
                   BaseColors.primaryLightOrange.withOpacity(.3)
               : backgroundColor ?? BaseColors.primaryLightOrange,
-          boxShadow: boxShadow,
+          boxShadow: [
+            BoxShadow(
+              color: BaseColors.fontPrimaryLightOrange.withOpacity(.4),
+              blurRadius: 20,
+              offset: Offset(0, 5),
+            ),
+          ],
         ),
         child: ClipRRect(
           borderRadius: borderRadius ?? BorderRadius.circular(8),

@@ -19,12 +19,18 @@ class BaseImages {
   static const calldring = 'assets/images/img_calldring.png';
   static const placeholder = 'assets/images/img_placeholder.png';
   static const googleMaps = 'assets/images/img_google_maps.png';
+  static const googleMapsDanger = 'assets/images/img_google_maps_danger.png';
   static const googleMaps2 = 'assets/images/img_google_maps2.png';
+  static const googleMaps2Danger = 'assets/images/img_google_maps2_danger.png';
   static const mapsFire = 'assets/images/img_maps_fire.png';
+  static const mapsFireDanger = 'assets/images/img_maps_fire_danger.png';
   static const mapsPoliceArrow = 'assets/images/img_maps_police_arrow.png';
   static const mapsPoliceDanger = 'assets/images/img_maps_police_danger.png';
   static const mapsPoliceOriginal =
       'assets/images/img_maps_police_original.png';
+  static const mapsPoliceArrowDanger =
+      'assets/images/img_maps_police_arrrow_danger.png';
+  static const face = 'assets/images/img_face.png';
 }
 
 class BaseImage64 {}

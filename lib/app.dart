@@ -1,9 +1,13 @@
 import 'package:alertus/core/constants/font.dart';
 import 'package:alertus/core/constants/router.dart';
+import 'package:alertus/core/resources/colors.dart';
 import 'package:alertus/core/utils/scroll_behaviour_utils.dart';
 import 'package:alertus/screens/add_contact_screen.dart';
+import 'package:alertus/screens/face_recognition_screen.dart';
 import 'package:alertus/screens/home_police_screen.dart';
 import 'package:alertus/screens/home_screen.dart';
+import 'package:alertus/screens/join_us_police_screen.dart';
+import 'package:alertus/screens/join_us_public_screen.dart';
 import 'package:alertus/screens/login_screen.dart';
 import 'package:alertus/screens/register_screen.dart';
 import 'package:alertus/screens/role_screen.dart';
@@ -26,7 +30,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Alert Us',
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            colorScheme:
+                ColorScheme.fromSeed(seedColor: BaseColors.primaryLightOrange),
             fontFamily: BaseFonts.gilroy,
           ),
           debugShowCheckedModeBanner: false,
@@ -46,6 +51,9 @@ class MyApp extends StatelessWidget {
             ROUTER.setting: (context) => const SettingScreen(),
             ROUTER.addContact: (context) => const AddContactScreen(),
             ROUTER.tracker: (context) => const TrackScreen(),
+            ROUTER.joinUsPublic: (context) => const JoinUsPublicScreen(),
+            ROUTER.joinUsPolice: (context) => const JoinUsPoliceScreen(),
+            ROUTER.faceRecognition: (context) => const FaceRecognitionScreen(),
           },
         );
       },

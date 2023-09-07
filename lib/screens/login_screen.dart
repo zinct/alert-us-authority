@@ -108,13 +108,8 @@ class LoginScreen extends StatelessWidget {
                             SizedBox(width: 5.w),
                             TouchableOpacityWidget(
                               onTap: () {
-                                if (isPolice == null) {
-                                  Navigator.of(context)
-                                      .pushNamed(ROUTER.home_police);
-                                } else {
-                                  Navigator.of(context)
-                                      .pushNamed(ROUTER.register);
-                                }
+                                Navigator.of(context).pushNamed(ROUTER.register,
+                                    arguments: isPolice);
                               },
                               child: Text(
                                 "Create Account.",

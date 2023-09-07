@@ -9,4 +9,7 @@ class ROUTER {
   static const maps = 'apps.screen.maps';
   static const addContact = 'apps.screen.add_contact';
   static const tracker = 'apps.screen.tracker';
+  static const joinUsPublic = 'apps.screen.join_us_public';
+  static const joinUsPolice = 'apps.screen.join_us_police';
+  static const faceRecognition = 'apps.screen.face_recognition';
 }

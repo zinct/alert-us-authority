@@ -137,6 +137,7 @@ class AddContactScreen extends StatelessWidget {
                     },
                     text: "Confirm"),
               ),
+              SizedBox(height: 30.h),
             ],
           ),
         ),

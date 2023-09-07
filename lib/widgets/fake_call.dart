@@ -6,9 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FakeCall extends StatefulWidget {
-  const FakeCall({super.key, required this.onTap});
+  const FakeCall({super.key, required this.onTap, required this.minute});
 
   final Function() onTap;
+  final String minute;
 
   @override
   State<FakeCall> createState() => _FakeCallState();
@@ -55,7 +56,7 @@ class _FakeCallState extends State<FakeCall> {
                       ),
                       SizedBox(height: 5.h),
                       Text(
-                        "01:50",
+                        widget.minute,
                         style: GilroyFontWhite.bold16(context),
                       ),
                       SizedBox(height: 30.h),

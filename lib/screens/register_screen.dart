@@ -2,7 +2,6 @@ import 'package:alertus/core/components/buttons/primary_button.dart';
 import 'package:alertus/core/components/textfields/primary_text_field.dart';
 import 'package:alertus/core/constants/router.dart';
 import 'package:alertus/core/resources/colors.dart';
-import 'package:alertus/core/resources/images.dart';
 import 'package:alertus/core/styles/textstyles/gilroy_font_black.dart';
 import 'package:alertus/core/styles/textstyles/gilroy_font_custom.dart';
 import 'package:alertus/core/widgets/touchable_opacity_widget.dart';
@@ -14,6 +13,8 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isPolice = ModalRoute.of(context)!.settings.arguments as bool?;
+
     return Scaffold(
       body: SafeArea(
         bottom: false,
@@ -54,13 +55,13 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 10.w),
                   const PrimaryTextField(
-                    hintText: "Masukan nomor atau username",
+                    hintText: "Enter the number or username",
                   ),
                   SizedBox(height: 20.w),
                   Row(
                     children: [
                       Text(
-                        "Password",
+                        "Enter password",
                         style: GilroyFontBlack.regular12(context)
                             .copyWith(color: Colors.black),
                       ),
@@ -69,7 +70,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 10.w),
                   const PrimaryTextField(
-                    hintText: "Masukan Password",
+                    hintText: "Retype the password",
                     suffix: Icon(
                       Icons.remove_red_eye_outlined,
                     ),
@@ -93,7 +94,15 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 80.w),
-                  PrimaryButton(onTap: () {}, text: "Register"),
+                  PrimaryButton(
+                      onTap: () {
+                        if (isPolice == null) {
+                          Navigator.of(context).pushNamed(ROUTER.joinUsPublic);
+                        } else {
+                          Navigator.of(context).pushNamed(ROUTER.joinUsPolice);
+                        }
+                      },
+                      text: "Register"),
                   SizedBox(height: 20.w),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

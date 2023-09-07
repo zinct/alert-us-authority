@@ -14,4 +14,5 @@ class BaseSvg {
   static const icSearch = 'assets/svg/ic_search.svg';
   static const icLogout = 'assets/svg/ic_logout.svg';
   static const icRadio = 'assets/svg/ic_radio.svg';
+  static const icUpload = 'assets/svg/ic_upload.svg';
 }

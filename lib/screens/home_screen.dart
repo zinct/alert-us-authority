@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:alertus/core/components/buttons/primary_button.dart';
 import 'package:alertus/core/components/textfields/primary_text_field.dart';
 import 'package:alertus/core/constants/router.dart';
@@ -11,10 +13,10 @@ import 'package:alertus/core/styles/textstyles/gilroy_font_white.dart';
 import 'package:alertus/core/widgets/touchable_opacity_widget.dart';
 import 'package:alertus/widgets/fake_call.dart';
 import 'package:alertus/widgets/sos.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,10 +30,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   late bool isFakeCall = false;
   late bool isSOS = false;
+  int seconds = 0;
+  final player = AudioPlayer();
+  late Timer timer;
 
   late List<Widget> tabs = [
     HomeTab(
-      onFakeCall: () {
+      onFakeCall: () async {
+        seconds = 0;
+
+        await player.play(AssetSource('lotties/fakecall.mp3'));
         setState(() {
           isFakeCall = true;
         });
@@ -46,6 +54,34 @@ class _HomeScreenState extends State<HomeScreen> {
     ContactTab(),
     ProfileTab(),
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initPlay();
+
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        seconds++;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    stop();
+    timer.cancel();
+    super.dispose();
+  }
+
+  void stop() async {
+    await player.stop();
+  }
+
+  void initPlay() async {
+    await player.setSource(AssetSource('lotties/fakecall.mp3'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -195,13 +231,34 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           isFakeCall
-              ? FakeCall(
-                  onTap: () {
-                    setState(() {
-                      isFakeCall = false;
-                    });
-                  },
-                )
+              ? StreamBuilder<int>(
+                  stream: Stream.periodic(Duration(seconds: 1), (i) => seconds),
+                  builder: (context, snapshot) {
+                    var formattedTime = "00:00";
+                    if (!snapshot.hasData) {
+                      final int totalSeconds = seconds;
+                      final int minutes = totalSeconds ~/ 60;
+                      final int remainingSeconds = totalSeconds % 60;
+
+                      // Format waktu ke format hh:mm
+                      formattedTime =
+                          '${minutes.toString().padLeft(2, '0')}:${remainingSeconds.toString().padLeft(2, '0')}';
+                    } else {
+                      formattedTime = "00:00";
+                    }
+
+                    return FakeCall(
+                      minute: formattedTime,
+                      onTap: () async {
+                        await player.stop();
+
+                        setState(() {
+                          isFakeCall = false;
+                          seconds = 0;
+                        });
+                      },
+                    );
+                  })
               : Container(),
           isSOS
               ? SOS(
@@ -232,6 +289,7 @@ class _MapsTabState extends State<MapsTab> {
     Matrix4.identity().scaled(1.2),
   );
 
+  bool isDangerious = false;
   bool isLocation = true;
   bool police = false;
   bool fire = false;
@@ -243,12 +301,36 @@ class _MapsTabState extends State<MapsTab> {
 
   String getImage() {
     if (police) {
-      return BaseImages.googleMaps2;
+      if (isDangerious) {
+        return BaseImages.googleMaps2Danger;
+      } else {
+        return BaseImages.googleMaps2;
+      }
     } else if (fire) {
-      return BaseImages.mapsFire;
+      if (isDangerious) {
+        return BaseImages.mapsFireDanger;
+      } else {
+        return BaseImages.mapsFire;
+      }
     } else {
-      return BaseImages.googleMaps;
+      if (isDangerious) {
+        return BaseImages.googleMapsDanger;
+      } else {
+        return BaseImages.googleMaps;
+      }
     }
+  }
+
+  Color getColor(Set<MaterialState> states) {
+    const Set<MaterialState> interactiveStates = <MaterialState>{
+      MaterialState.pressed,
+      MaterialState.hovered,
+      MaterialState.focused,
+    };
+    if (states.any(interactiveStates.contains)) {
+      return Colors.blue;
+    }
+    return BaseColors.primaryLightOrange;
   }
 
   @override
@@ -268,6 +350,111 @@ class _MapsTabState extends State<MapsTab> {
             ),
           ),
         ),
+        isLocation == false
+            ? SafeArea(
+                child: Column(
+                  children: [
+                    SizedBox(height: 20.w),
+                    Row(
+                      children: [
+                        const Spacer(),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: BaseColors.fontPrimaryLightOrange,
+                              width: 3,
+                            ),
+                          ),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20.w, vertical: 7.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Maps Feature",
+                                style: GilroyFontBlack.bold10(context),
+                              ),
+                              SizedBox(height: 8.w),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    height: 20.h,
+                                    width: 20.w,
+                                    child: Checkbox(
+                                      checkColor:
+                                          BaseColors.fontPrimaryLightOrange,
+                                      value: isDangerious,
+                                      fillColor:
+                                          MaterialStateProperty.resolveWith(
+                                              getColor),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          isDangerious = value ?? false;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(width: 8.w),
+                                  Text(
+                                    "Show dangerious locations",
+                                    style: GilroyFontBlack.medium10(context),
+                                  ),
+                                ],
+                              ),
+                              Visibility(
+                                visible: isDangerious,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: 5.w),
+                                    Row(
+                                      children: [
+                                        SizedBox(width: 40.w),
+                                        CircleAvatar(
+                                          backgroundColor:
+                                              const Color(0xFFFF0000),
+                                          radius: 6.w,
+                                        ),
+                                        SizedBox(width: 8.w),
+                                        Text(
+                                          "Dangerious Locations",
+                                          style:
+                                              GilroyFontBlack.medium10(context),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10.w),
+                                    Row(
+                                      children: [
+                                        SizedBox(width: 40.w),
+                                        CircleAvatar(
+                                          backgroundColor:
+                                              const Color(0xFF00C920),
+                                          radius: 6.w,
+                                        ),
+                                        SizedBox(width: 8.w),
+                                        Text(
+                                          "Safe Locations",
+                                          style:
+                                              GilroyFontBlack.medium10(context),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10.w),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: 33.w),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            : Container(),
         isLocation == false
             ? SafeArea(
                 child: Column(
@@ -797,7 +984,9 @@ class HomeTab extends StatelessWidget {
                           ),
                           SizedBox(width: 30.w),
                           TouchableOpacityWidget(
-                            onTap: onFakeCall,
+                            onTap: () async {
+                              onFakeCall();
+                            },
                             child: Image.asset(
                               BaseImages.calldring,
                             ),

@@ -39,7 +39,7 @@ class RoleScreen extends StatelessWidget {
                     children: [
                       SizedBox(height: 86.w),
                       Text(
-                        "Silahkan pilih tipe akun yang sesuai untukmu!",
+                        "Please choose the type of account that suits you!",
                         style: GilroyFontBlack.medium16(context),
                       ),
                       SizedBox(height: 21.w),
@@ -63,11 +63,11 @@ class RoleScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Pengguna",
+                                    "Public",
                                     style: GilroyFontWhite.bold20(context),
                                   ),
                                   Text(
-                                    "Pastikan diri kamu aman",
+                                    "Make sure you are safe",
                                     style: GilroyFontWhite.regular12(context),
                                   ),
                                 ],
@@ -103,11 +103,11 @@ class RoleScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Pihak Berwajib",
+                                    "The authority",
                                     style: GilroyFontWhite.bold20(context),
                                   ),
                                   Text(
-                                    "Pantau keamanan sekitar",
+                                    "Monitor security around",
                                     style: GilroyFontWhite.regular12(context),
                                   ),
                                 ],

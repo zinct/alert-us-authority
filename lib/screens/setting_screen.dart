@@ -297,7 +297,9 @@ class _SettingScreenState extends State<SettingScreen> {
                                         child: Column(
                                           children: [
                                             PrimaryButton(
-                                                onTap: () {},
+                                                onTap: () {
+                                                  Navigator.of(context).pop();
+                                                },
                                                 text: "Add Gesture"),
                                             SizedBox(height: 20.h),
                                           ],
@@ -372,15 +374,15 @@ class _SettingScreenState extends State<SettingScreen> {
                 children: [
                   SizedBox(height: 20.h),
                   PrimaryButton(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) {
                           return SuccessAlert(
                             message: "Setting Emergency Button",
                           );
                         },
                       ));
-                      // Navigator.of(context).pop();
+                      Navigator.of(context).pop();
                     },
                     text: "Confirm",
                   ),
