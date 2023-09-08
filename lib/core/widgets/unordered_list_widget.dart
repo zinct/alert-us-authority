@@ -2,7 +2,7 @@
 /// unordered_list.dart
 /// lib/core/widgets
 ///
-/// Created by Indra Mahesa https://github.com/zinct
+///
 ///
 
 import 'package:flutter/material.dart';

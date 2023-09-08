@@ -2,7 +2,7 @@
 /// context_extension.dart
 /// lib/core/extensions
 ///
-/// Created by Indra Mahesa https://github.com/zinct
+///
 ///
 
 import 'package:flutter/material.dart';
