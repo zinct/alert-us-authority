@@ -69,6 +69,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void didChangeDependencies() {
+    precacheImage(AssetImage(BaseImages.sosGreen), context);
+    precacheImage(AssetImage(BaseImages.sos), context);
+    super.didChangeDependencies();
+  }
+
+  @override
   void dispose() {
     stop();
     timer.cancel();
@@ -843,9 +850,18 @@ class _HomeTabState extends State<HomeTab> {
                           });
                         }
                       },
-                      child: isGreen
-                          ? Image.asset(BaseImages.sosGreen)
-                          : Image.asset(BaseImages.sos),
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 300),
+                        child: isGreen
+                            ? Image.asset(
+                                BaseImages.sosGreen,
+                                key: ValueKey('1'),
+                              )
+                            : Image.asset(
+                                BaseImages.sos,
+                                key: ValueKey('2'),
+                              ),
+                      ),
                     ),
                     SizedBox(height: 30.w),
                     Container(
@@ -1475,7 +1491,7 @@ class ProfileTab extends StatelessWidget {
               ListTile(
                 leading: SvgPicture.asset(BaseSvg.icLogout),
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed(ROUTER.role);
+                  Navigator.of(context).pushReplacementNamed(ROUTER.login);
                 },
                 minLeadingWidth: 24,
                 title: Text(

@@ -76,29 +76,38 @@ class _SOSState extends State<SOS> {
                               'assets/lotties/success.json',
                               height: 200.h,
                             )
-                          : !isEnd
-                              ? Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(BaseImages.policeCar),
-                                    SizedBox(width: 20.w),
-                                    Text(
-                                      "Police on the way...",
-                                      style: GilroyFontWhite.medium20(context),
+                          : AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 300),
+                              child: !isEnd
+                                  ? Row(
+                                      key: ValueKey('1'),
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(BaseImages.policeCar),
+                                        SizedBox(width: 20.w),
+                                        Text(
+                                          "Police on the way...",
+                                          style:
+                                              GilroyFontWhite.medium20(context),
+                                        ),
+                                      ],
+                                    )
+                                  : Row(
+                                      key: ValueKey('2'),
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "Police on the way...",
+                                          style:
+                                              GilroyFontWhite.medium20(context),
+                                        ),
+                                        SizedBox(width: 20.w),
+                                        Image.asset(BaseImages.policeCar),
+                                      ],
                                     ),
-                                  ],
-                                )
-                              : Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "Police on the way...",
-                                      style: GilroyFontWhite.medium20(context),
-                                    ),
-                                    SizedBox(width: 20.w),
-                                    Image.asset(BaseImages.policeCar),
-                                  ],
-                                ),
+                            ),
                       isEnding
                           ? SizedBox(height: 20.h)
                           : SizedBox(height: 70.h),
