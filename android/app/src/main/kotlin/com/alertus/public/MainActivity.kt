@@ -1,4 +1,4 @@
-package com.example.alertus
+package com.alertus.public
 
 import io.flutter.embedding.android.FlutterActivity
 

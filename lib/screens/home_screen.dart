@@ -33,11 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
   int seconds = 0;
   final player = AudioPlayer();
   late Timer timer;
-  bool isGreen = false;
 
   late List<Widget> tabs = [
     HomeTab(
-      isGreen: isGreen,
       onFakeCall: () async {
         seconds = 0;
 
@@ -47,15 +45,9 @@ class _HomeScreenState extends State<HomeScreen> {
         });
       },
       onSOS: () {
-        if (!isGreen) {
-          setState(() {
-            isGreen = true;
-          });
-        } else {
-          // setState(() {
-          //   isSOS = true;
-          // });
-        }
+        setState(() {
+          isSOS = true;
+        });
       },
     ),
     MapsTab(),
@@ -693,20 +685,24 @@ class _MapsTabState extends State<MapsTab> {
   }
 }
 
-class HomeTab extends StatelessWidget {
+class HomeTab extends StatefulWidget {
   const HomeTab({
     super.key,
     required this.onFakeCall,
     required this.onSOS,
-    required this.isGreen,
   });
 
   final Function() onFakeCall;
   final Function() onSOS;
-  final bool isGreen;
+
+  @override
+  State<HomeTab> createState() => _HomeTabState();
+}
+
+class _HomeTabState extends State<HomeTab> {
+  bool isGreen = false;
 
   Widget build(BuildContext context) {
-    print("ifg $isGreen");
     return Stack(
       children: [
         SingleChildScrollView(
@@ -834,7 +830,19 @@ class HomeTab extends StatelessWidget {
                     ),
                     SizedBox(height: 30.w),
                     TouchableOpacityWidget(
-                      onTap: onSOS,
+                      onTap: () async {
+                        if (!isGreen) {
+                          setState(() {
+                            isGreen = true;
+                          });
+                        } else {
+                          widget.onSOS();
+                          await Future.delayed(Duration(seconds: 1));
+                          setState(() {
+                            isGreen = false;
+                          });
+                        }
+                      },
                       child: isGreen
                           ? Image.asset(BaseImages.sosGreen)
                           : Image.asset(BaseImages.sos),
@@ -999,7 +1007,7 @@ class HomeTab extends StatelessWidget {
                           SizedBox(width: 30.w),
                           TouchableOpacityWidget(
                             onTap: () async {
-                              onFakeCall();
+                              widget.onFakeCall();
                             },
                             child: Image.asset(
                               BaseImages.calldring,

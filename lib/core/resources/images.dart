@@ -16,7 +16,7 @@ class BaseImages {
   static const icNotification = 'assets/images/img_ic_notification.png';
   static const overlay = 'assets/images/img_overlay.png';
   static const sos = 'assets/images/img_sos.png';
-  static const sosGreen = 'assets/images/img_nice.png';
+  static const sosGreen = 'assets/images/img_sos_nice.png';
   static const calldring = 'assets/images/img_calldring.png';
   static const placeholder = 'assets/images/img_placeholder.png';
   static const googleMaps = 'assets/images/img_google_maps.png';
