@@ -1263,7 +1263,8 @@ class ProfileTab extends StatelessWidget {
               ListTile(
                 leading: SvgPicture.asset(BaseSvg.icLogout),
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed(ROUTER.role);
+                  Navigator.of(context)
+                      .pushReplacementNamed(ROUTER.login, arguments: true);
                 },
                 minLeadingWidth: 24,
                 title: Text(

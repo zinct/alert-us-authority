@@ -1,4 +1,4 @@
-package com.alertus.public
+package com.alertus.authority
 
 import io.flutter.embedding.android.FlutterActivity
 

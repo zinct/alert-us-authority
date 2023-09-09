@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="alertus"
+        android:label="Alertus Authority"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
